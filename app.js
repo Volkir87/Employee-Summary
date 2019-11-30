@@ -1,3 +1,12 @@
+/*
+app.js
+Author: Kirill Volodkin
+Created date: 2019-11-29
+
+This script runs an application. It will first request user input, get the array of answers, transform it into array of objects
+of respective classes (Manager, Engineer or Intern), and then generate an html based on the team array.  
+*/
+
 const manager = require("./lib/Manager");
 const engineer = require("./lib/Engineer");
 const intern = require("./lib/Intern");
@@ -9,7 +18,6 @@ const fs = require("fs");
 async function init(){
     input = new uinput.UserInput();
     await input.requestInput();
-    //console.log(input.allAnswers);
 
     let team = [];
     for (record of input.allAnswers) {
@@ -25,10 +33,8 @@ async function init(){
         }
         team.push(employee);
     }
-    //console.log(team);
     let teamPage = new genHTML.TeamPage(team);
     let html = teamPage.generate();
-    console.log(html);
 
     fs.writeFile("./output/MyTeam.html", html, (err) => {
         if (err) throw err;
