@@ -7,9 +7,9 @@ This script runs an application. It will first request user input, get the array
 of respective classes (Manager, Engineer or Intern), and then generate an html based on the team array.  
 */
 
-const manager = require("./lib/Manager");
-const engineer = require("./lib/Engineer");
-const intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 const uinput = require("./lib/processUserInput");
 const genHTML = require("./lib/generateHTML");
 const fs = require("fs");
@@ -23,13 +23,13 @@ async function init(){
     for (record of input.allAnswers) {
         let employee = {};
         if (record.type === 'Manager') {
-            employee = new manager.Manager(record.name, record.id, record.email, record.addParam);
+            employee = new Manager(record.name, record.id, record.email, record.addParam);
         }
         if (record.type === 'Engineer') {
-            employee = new engineer.Engineer(record.name, record.id, record.email, record.addParam);
+            employee = new Engineer(record.name, record.id, record.email, record.addParam);
         }
         if (record.type === 'Intern') {
-            employee = new intern.Intern(record.name, record.id, record.email, record.addParam);
+            employee = new Intern(record.name, record.id, record.email, record.addParam);
         }
         team.push(employee);
     }
